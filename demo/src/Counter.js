@@ -14,16 +14,24 @@ class Counter extends Component {
     }
 
     onIncrementButtonClick() {
-        this.setState({
-            count: this.state.count + 1
-        });
+        this.updateCount("increment");
     }
 
     onDecrementButtonClick() {
-        let curCount = this.state.count - 1;
+        this.updateCount("decrement");
+    }
+
+    updateCount(operate) {
+        let prevCount = this.state.count;
+        let newCount = 
+            operate === "increment" ? prevCount + 1 : 
+            operate === "decrement" ? (prevCount <= 1 ? 0 : prevCount - 1) : 0;
+        
         this.setState({
-            count: curCount < 0 ? 0 : curCount
+            count: newCount
         });
+
+        this.props.onUpdate(prevCount, newCount);
     }
 
     render() {
@@ -40,7 +48,12 @@ class Counter extends Component {
 
 Counter.propTypes = {
     caption: PropTypes.string.isRequired,
-    count: PropTypes.number
+    count: PropTypes.number,
+    onUpdate: PropTypes.func
+};
+Counter.defaultProps = {
+    count: 0,
+    onUpdate: f => f
 };
 
 export default Counter;
