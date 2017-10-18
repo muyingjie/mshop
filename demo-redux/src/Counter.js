@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
+import store from "./Store.js";
+import * as Actions from "./Actions.js";
 
 class Counter extends Component {
     constructor(props) {
@@ -7,39 +9,43 @@ class Counter extends Component {
 
         this.onIncrementButtonClick = this.onIncrementButtonClick.bind(this);
         this.onDecrementButtonClick = this.onDecrementButtonClick.bind(this);
+        this.onChange = this.onChange.bind(this);
 
         this.state = {
-            count: props.count
+            count: store.getState()[props.caption]
         };
     }
 
+    onChange() {
+        this.setState({
+            count: store.getState()[this.props.caption]
+        });
+    }
+
     onIncrementButtonClick() {
-        this.updateCount("increment");
+        store.dispatch(Actions.increment(this.props.caption));
     }
 
     onDecrementButtonClick() {
-        this.updateCount("decrement");
+        store.dispatch(Actions.decrement(this.props.caption));
     }
 
-    updateCount(operate) {
-        let prevCount = this.state.count;
-        let newCount = 
-            operate === "increment" ? prevCount + 1 : 
-            operate === "decrement" ? (prevCount <= 1 ? 0 : prevCount - 1) : 0;
-        
-        this.setState({
-            count: newCount
-        });
+    componentDidMount() {
+        store.subscribe(this.onChange);
+    }
 
-        this.props.onUpdate(prevCount, newCount);
+    componentWillUnmount() {
+        store.unsubscribe(this.onChange);
     }
 
     render() {
+        const caption = this.props.caption;
+
         return (
             <div>
                 <input type="button" value="+" onClick={this.onIncrementButtonClick} />
                 <input type="button" value="-" onClick={this.onDecrementButtonClick} />
-                {this.props.caption} count：
+                {caption} count：
                 {this.state.count}
             </div>
         );
