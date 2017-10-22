@@ -80,10 +80,10 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch, ownProps) {
     return {
         onIncrement: () => {
-            dispatch(Actions.increment(owrProps));
+            dispatch(Actions.increment(ownProps));
         },
         onDecrement: () => {
-            dispatch(Actions.decrement(owrProps));
+            dispatch(Actions.decrement(ownProps));
         }
     };
 }
