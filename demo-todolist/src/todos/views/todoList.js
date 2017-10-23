@@ -56,4 +56,16 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
+// 为简化mapDispatchToProps里面return回来对象的重复代码，还可以通过引入bindActionCreators来简化
+// const mapDispatchToProps = (dispatch) => bindActionCreators({
+//     onToggleTodo: toggleTodo,
+//     onRemoveTodo: removeTodo
+// }, dispatch);
+
+// 还可以再简化：
+// const mapDispatchToProps = {
+//     onToggleTodo: toggleTodo,
+//     onRemoveTodo: removeTodo
+// };
+
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
