@@ -6,9 +6,7 @@ export default (state = {status: "increment_loading"}, action) => {
             };
         case "increment_success":
             return {
-                status: "increment_success",
-                ...state,
-                ...action.result
+                status: "increment_success"
             };
         case "increment_fail":
             return {

@@ -17,9 +17,12 @@ export const increment_fail = () => ({
     type: "increment_fail"
 });
 export const incrementAsync = () => {
-    return (dispatch, getState) => {
-        setTimeout(() => {
-            dispatch(increment_success());
-        }, 1000);
+    return (dispatch) => {
+        dispatch(increment_loading());
+        return (dispatch, getState) => {
+            setTimeout(() => {
+                dispatch(increment_success());
+            }, 2000);
+        };
     };
 };
