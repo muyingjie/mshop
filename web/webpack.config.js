@@ -1,4 +1,5 @@
 module.exports = {
+    devtool: 'eval-source-map',
     entry: __dirname + "/src/main.js",
     output: {
         path: __dirname + "/dist",
@@ -28,5 +29,11 @@ module.exports = {
                 ]
             }
         ]
+    },
+    devServer: {
+        contentBase: "./dist",
+        port: 4000,
+        historyApiFallback: true,
+        inline: true
     }
 };
