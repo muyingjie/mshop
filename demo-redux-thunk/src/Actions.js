@@ -19,17 +19,17 @@ export const increment_fail = () => ({
 export const incrementAsync = () => {
     return (dispatch) => {
         dispatch(increment_loading());
-        // setTimeout(() => {
-        //     dispatch(increment_success());
-        // }, 2000);
-        return fetch("/data/cityinfo/101010100.html").then((response) => {
-            if (response.status !== 200) {
-                throw new Error("获取天气信息失败");
-            }
+        setTimeout(() => {
+            dispatch(increment_success());
+        }, 2000);
+        // return fetch("/data/cityinfo/101010100.html").then((response) => {
+        //     if (response.status !== 200) {
+        //         throw new Error("获取天气信息失败");
+        //     }
 
-            response.json().then((responseJson) => {
-                dispatch(increment_success());
-            });
-        });
+        //     response.json().then((responseJson) => {
+        //         dispatch(increment_success());
+        //     });
+        // });
     };
 };

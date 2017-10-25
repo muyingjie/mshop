@@ -3,13 +3,16 @@ import {connect} from "react-redux";
 import * as actions from "./Actions";
 
 class Counter extends Component {
-    render() {
+    componentDidMount() {
         this.props.onTimeArrive();
+    }
+
+    render() {
         return (<div>信息读取中...</div>);
     }
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state) => {console.log(state);
     return {
         status: state.status
     };
