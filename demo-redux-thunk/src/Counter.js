@@ -9,7 +9,7 @@ class Counter extends Component {
     }
 };
 
-const mapStateToProps = (state) => {console.log(state);
+const mapStateToProps = (state) => {
     return {
         status: state.status
     };
