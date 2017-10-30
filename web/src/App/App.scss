@@ -1,0 +1,12 @@
+*{ margin: 0; padding: 0; list-style: none; color: #333;}
+a{ text-decoration: none;}
+.fl{ float: left;}
+.fr{ float: right;}
+.inline-block{ display: inline-block;}
+.bd{ box-sizing: border-box;}
+.clear:after{ clear: both; display: block; content: "";}
+
+.wrap{ margin: 0 20px;}
+.wrap .top-bar{ height: 70px; border-bottom: 1px solid #eee;}
+.wrap .nav-wrap{ width: 10%; border-right: 1px solid #eee;}
+.wrap .main{ padding: 10px;}

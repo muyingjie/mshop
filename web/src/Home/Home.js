@@ -1,9 +1,11 @@
 import React, {Component} from "react";
 
+import "./Home.scss";
+
 const Home = () => {
     return (
         <div>
-            <div>首页</div>
+            <div className="title">首页</div>
         </div>
     );
 };
