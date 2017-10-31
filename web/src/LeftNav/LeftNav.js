@@ -9,11 +9,11 @@ class LeftNav extends Component{
 
         this.navConfigData = [
             {
-                firstLevel: {
+                parent: {
                     name: "订单管理",
-                    isLink: true
+                    link: "/order"
                 },
-                childItems: [
+                children: [
                     {
                         name: "订单列表",
                         link: "/order"
@@ -21,11 +21,11 @@ class LeftNav extends Component{
                 ]
             },
             {
-                firstLevel: {
+                parent: {
                     name: "商品管理",
-                    isLink: false
+                    link: "/good"
                 },
-                childItems: [
+                children: [
                     {
                         name: "商品列表",
                         link: "/good"
@@ -50,24 +50,32 @@ class LeftNav extends Component{
             }
         ];
     }
-
+    componentDidMount() {
+        let fillHeight = this.fillHeight;
+        fillHeight();
+        window.addEventListener("resize", fillHeight);
+    }
+    fillHeight() {
+        let oNav = document.getElementById("nav");
+        // FF下document.body是undefined
+        oNav.style.minHeight = (document.documentElement || document.body).clientHeight - 81 + "px";
+    }
     render() {
-        const navConfigData = this.navConfigData;
         return (
-            <ul className="nav">
+            <ul className="nav" id="nav">
                 {
-                    navConfigData.map((item) => {
-                        <li className="item-wrap">
-                            item.firstLevel.isLink ? 
-                            <Link to={item.link} className="first-level">订单列表</Link> : 
-                            <a href="javascript:;" className="first-level">订单管理</a>
+                    this.navConfigData.map((item, key) => (
+                        <li className="item-wrap" key={key}>
+                            <dl className="content-wrap">
+                                <dt><Link to={item.parent.link} className="first-level">{item.parent.name}</Link></dt>
+                                {
+                                    item.children.map((childItem, childKey) => (
+                                        <dd key={childKey}><Link to={childItem.link} className="child-item">{childItem.name}</Link></dd>
+                                    ))
+                                }
+                            </dl>
                         </li>
-                        item.childItems.map((childItem) => {
-                            <li className="item-wrap">                
-                                <Link to={childItem.link} className="child-item">订单列表</Link>
-                            </li>
-                        })
-                    })
+                    ))
                 }
             </ul>
         );
