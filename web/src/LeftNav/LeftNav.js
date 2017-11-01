@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {Link} from "react-router";
+import LeftNavItem from "../LeftNavItem/LeftNavItem";
 
 import "./LeftNav.scss";
 
@@ -65,16 +66,7 @@ class LeftNav extends Component{
             <ul className="nav" id="nav">
                 {
                     this.navConfigData.map((item, key) => (
-                        <li className="item-wrap" key={key}>
-                            <dl className="content-wrap">
-                                <dt><Link to={item.parent.link} className="first-level">{item.parent.name}</Link></dt>
-                                {
-                                    item.children.map((childItem, childKey) => (
-                                        <dd key={childKey}><Link to={childItem.link} className="child-item">{childItem.name}</Link></dd>
-                                    ))
-                                }
-                            </dl>
-                        </li>
+                        <LeftNavItem item={item} key={key} />
                     ))
                 }
             </ul>
