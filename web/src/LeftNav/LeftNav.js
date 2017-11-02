@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {Link} from "react-router";
 import LeftNavItem from "../LeftNavItem/LeftNavItem";
 
 import "./LeftNav.scss";
