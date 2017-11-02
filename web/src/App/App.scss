@@ -8,5 +8,9 @@ a{ text-decoration: none;}
 
 .wrap{ margin: 0 20px;}
 .wrap .top-bar{ height: 70px; border-bottom: 1px solid #eee;}
-.wrap .nav-wrap{ width: 10%; border-right: 1px solid #eee;}
-.wrap .main{ padding: 10px;}
+.wrap .top-bar .logo{ display: block; width: 10%; height: 100%; background: #eef; color: #fff; line-height: 70px; text-align: center; font-weight: bold; font-size: 30px;}
+.wrap .nav-wrap{ width: 10%;}
+.wrap .main{ padding: 10px; width: 90%;}
+.wrap .main .title-back{ line-height: 50px;}
+.wrap .main .back{ margin-right: 30px;}
+.wrap .main .title{ font-family: 黑体;}
