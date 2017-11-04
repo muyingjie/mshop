@@ -1,54 +1,12 @@
 import React, {Component} from "react";
-import LeftNavItem from "../LeftNavItem/LeftNavItem";
+import LeftNavItem from "./LeftNavItem";
+import {connect} from "react-redux";
 
 import "./LeftNav.scss";
 
 class LeftNav extends Component{
-    constructor(prop) {
-        super(prop);
-
-        this.navConfigData = [
-            {
-                parent: {
-                    name: "订单管理",
-                    link: "/order"
-                },
-                children: [
-                    {
-                        name: "订单列表",
-                        link: "/order"
-                    }
-                ]
-            },
-            {
-                parent: {
-                    name: "商品管理",
-                    link: "/good"
-                },
-                children: [
-                    {
-                        name: "商品列表",
-                        link: "/good"
-                    },
-                    {
-                        name: "商品分类",
-                        link: "/good-category"
-                    },
-                    {
-                        name: "商品属性",
-                        link: "/good-prop"
-                    },
-                    {
-                        name: "商品规格",
-                        link: "/good-specification"
-                    },
-                    {
-                        name: "商品评价",
-                        link: "/good-comment"
-                    }
-                ]
-            }
-        ];
+    constructor(props, store) {
+        super(props, store);
     }
     componentDidMount() {
         let fillHeight = this.fillHeight;
@@ -64,7 +22,7 @@ class LeftNav extends Component{
         return (
             <ul className="nav" id="nav">
                 {
-                    this.navConfigData.map((item, key) => (
+                    this.props.navConfigData.map((item, key) => (
                         <LeftNavItem item={item} key={key} />
                     ))
                 }
@@ -74,4 +32,11 @@ class LeftNav extends Component{
 
 }
 
-export default LeftNav;
+const mapStateToProps = (state) => {console.log(state);
+    return {
+        navConfigData: state.leftNav
+    };
+};
+
+// export default LeftNav;
+export default connect(mapStateToProps)(LeftNav);
