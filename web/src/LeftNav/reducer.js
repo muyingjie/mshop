@@ -1,8 +1,11 @@
+import {TOGGLE_NAV_PARENT_OPEN} from "./actionTypes";
+
 const navConfigData = [
     {
         parent: {
             name: "订单管理",
-            link: "/order"
+            link: "/order",
+            open: false
         },
         children: [
             {
@@ -14,7 +17,8 @@ const navConfigData = [
     {
         parent: {
             name: "商品管理",
-            link: "/good"
+            link: "/good",
+            open: false
         },
         children: [
             {
@@ -39,10 +43,26 @@ const navConfigData = [
             }
         ]
     }
-]
+];
+// 为navConfigData中主菜单添加唯一标识
+navConfigData.forEach(function(nav, index) {
+    nav.parent.id = index;
+});
+
 
 export default (state = navConfigData, action) => {
-    switch(action.type) {        
+    switch(action.type) {
+        case TOGGLE_NAV_PARENT_OPEN:
+            return state.map((item) => {
+                return {
+                    parent: {
+                        name: item.parent.name,
+                        link: item.parent.link,
+                        open: (item.parent.id == action.id) ? !item.parent.open : item.parent.open
+                    },
+                    children: JSON.parse(JSON.stringify(item.children))
+                }
+            });
         default: {
             return state;
         }

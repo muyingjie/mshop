@@ -32,7 +32,7 @@ class LeftNav extends Component{
 
 }
 
-const mapStateToProps = (state) => {console.log(state);
+const mapStateToProps = (state) => {
     return {
         navConfigData: state.leftNav
     };
