@@ -10,16 +10,16 @@ class LeftNavItem extends Component{
     }
 
     render() {
-        let item = this.props.item;console.log(item);
+        let item = this.props.item;
         let rowH = 30;
-        let startH = item.parent.open ? rowH :(item.children.length + 1) * rowH;
-        let dstH = item.parent.open ? (item.children.length + 1) * rowH : rowH;
+        let startH = item.parent.open ? (item.children.length + 1) * rowH : rowH;
+        let dstH = item.parent.open ? rowH : (item.children.length + 1) * rowH;
 
         return (
             <li className="item-wrap">
                 <Motion defaultStyle={{height: startH}} style={{height: spring(dstH)}}>
                     {
-                        value => <dl className="content-wrap" style={{height: value.height + "px"}}>
+                        value => <dl className="content-wrap" style={value}>
                             <dt onClick={() => this.props.onNavParentClick(item.parent.id)}><Link to={item.parent.link} className="first-level">{item.parent.name}</Link></dt>
                             {
                                 item.children.map((childItem, childKey) => (

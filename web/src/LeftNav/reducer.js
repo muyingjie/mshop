@@ -42,6 +42,19 @@ const navConfigData = [
                 link: "/good-comment"
             }
         ]
+    },
+    {
+        parent: {
+            name: "会员管理",
+            link: "/member",
+            open: false
+        },
+        children: [
+            {
+                name: "会员列表",
+                link: "/good"
+            }
+        ]
     }
 ];
 // 为navConfigData中主菜单添加唯一标识
@@ -56,6 +69,7 @@ export default (state = navConfigData, action) => {
             return state.map((item) => {
                 return {
                     parent: {
+                        id: item.parent.id,
                         name: item.parent.name,
                         link: item.parent.link,
                         open: (item.parent.id == action.id) ? !item.parent.open : item.parent.open
