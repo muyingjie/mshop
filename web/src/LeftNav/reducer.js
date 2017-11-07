@@ -1,11 +1,10 @@
-import {TOGGLE_NAV_PARENT_OPEN} from "./actionTypes";
+import {TOGGLE_NAV_PARENT_OPEN, ACTIVATE_CHILD_NAV} from "./actionTypes";
 
 const navConfigData = [
     {
         parent: {
             name: "订单管理",
-            link: "/order",
-            open: false
+            link: "/order"
         },
         children: [
             {
@@ -17,8 +16,7 @@ const navConfigData = [
     {
         parent: {
             name: "商品管理",
-            link: "/good",
-            open: false
+            link: "/good"
         },
         children: [
             {
@@ -46,8 +44,7 @@ const navConfigData = [
     {
         parent: {
             name: "会员管理",
-            link: "/member",
-            open: false
+            link: "/member"
         },
         children: [
             {
@@ -57,9 +54,15 @@ const navConfigData = [
         ]
     }
 ];
+let rnd = 0;
 // 为navConfigData中主菜单添加唯一标识
 navConfigData.forEach(function(nav, index) {
-    nav.parent.id = index;
+    nav.parent.id = rnd++;
+    nav.parent.active = false;
+    nav.children.forEach(function(navChild, childIndex) {
+        navChild.id = rnd++;
+        navChild.active = false;
+    });
 });
 
 
@@ -72,9 +75,21 @@ export default (state = navConfigData, action) => {
                         id: item.parent.id,
                         name: item.parent.name,
                         link: item.parent.link,
-                        open: (item.parent.id == action.id) ? !item.parent.open : item.parent.open
+                        active: (item.parent.id == action.id) ? !item.parent.active : item.parent.active
                     },
                     children: JSON.parse(JSON.stringify(item.children))
+                }
+            });
+        case ACTIVATE_CHILD_NAV:
+            return state.map((item) => {
+                return {
+                    parent: { ...item.parent },
+                    children: item.children.map((item) => {
+                        return {
+                            ...item,
+                            active: item.id == action.id
+                        }
+                    })
                 }
             });
         default: {

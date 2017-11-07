@@ -1,12 +1,13 @@
 import React, {Component} from "react";
 import LeftNav from "../LeftNav/LeftNav.js";
 import {Link, browserHistory} from "react-router";
+import {connect} from "react-redux";
 
 import "./App.scss";
 
 class App extends Component {
-    constructor(prop) {
-        super(prop);
+    constructor(props) {
+        super(props);
     }
     render() {
         return (
@@ -30,4 +31,7 @@ class App extends Component {
         );
     }
 }
-export default App;
+function mapStateToProps(state) {
+    return state;
+}
+export default connect(mapStateToProps)(App);
