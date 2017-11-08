@@ -32,7 +32,7 @@ class App extends Component {
         );
     }
 }
-function mapStateToProps(state) {console.log(state);
+function mapStateToProps(state) {
     let activeChildItem = {
         name: "首页",
         link: "/"

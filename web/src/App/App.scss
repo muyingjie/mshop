@@ -5,6 +5,7 @@ a{ text-decoration: none;}
 .inline-block{ display: inline-block;}
 .bd{ box-sizing: border-box;}
 .clear:after{ clear: both; display: block; content: "";}
+.ellipsis{ display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
 
 .wrap{ margin: 0 20px;}
 .wrap .top-bar{ height: 70px; border-bottom: 1px solid #eee;}
@@ -14,4 +15,4 @@ a{ text-decoration: none;}
 .wrap .main .title-back{ line-height: 50px;}
 .wrap .main .back{ width: 80px; text-align: center;}
 .wrap .main .title{ font-family: 黑体;}
-.wrap .main .content{ margin-left: 80px;}
+.wrap .main .content{ margin-left: 80px; margin-top: 20px;}
