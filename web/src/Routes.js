@@ -3,8 +3,8 @@ import {Router, Route, IndexRoute, browserHistory} from "react-router";
 
 import App from "./App/App.js";
 import Order from "./Order/Order.js";
-import Good from "./Good/Good.js";
-import GoodCategory from "./GoodCategory/GoodCategory.js";
+import Goods from "./Goods/Goods.js";
+import GoodsCategory from "./GoodsCategory/GoodsCategory.js";
 import Member from "./Member/Member.js";
 import Home from "./Home/Home.js";
 
@@ -14,10 +14,12 @@ const Routes = () => (
             <IndexRoute component={Home} />
             <Route path="order" component={Order} />
 
-            <Route path="good" component={Good} />
-            <Route path="good-category" component={GoodCategory} />
+            <Route path="goods" component={Goods} />
+            <Route path="goods-category" component={GoodsCategory} />
 
             <Route path="member" component={Member} />
+
+            <Route path="*" component={Home} />
         </Route>
     </Router>
 );

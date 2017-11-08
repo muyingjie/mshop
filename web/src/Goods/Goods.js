@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 
-const Good = () => {
+const Goods = () => {
     return (
         <div>Good</div>
     );
 }
 
-export default Good;
+export default Goods;

@@ -10,6 +10,7 @@ class App extends Component {
         super(props);
     }
     render() {
+        let activeName = this.props.activeInfo.name;
         return (
             <div className="wrap">
                 <div className="top-bar">
@@ -22,7 +23,7 @@ class App extends Component {
                     <div className="main bd fl">
                         <div className="title-back clear">
                             <a href="javascript:;" className="back fl">←</a>
-                            <h2 className="title fl">标题</h2>
+                            <h2 className="title fl">{activeName}</h2>
                         </div>
                         <div className="content">{this.props.children}</div>
                     </div>
@@ -31,7 +32,27 @@ class App extends Component {
         );
     }
 }
-function mapStateToProps(state) {
-    return state;
+function mapStateToProps(state) {console.log(state);
+    let activeChildItem = {
+        name: "首页",
+        link: "/"
+    };
+    let leftNav = state.leftNav;
+    let isFoundActiveChild = false;
+    let currentPath = browserHistory.getCurrentLocation().pathname;
+    leftNav.forEach((item, index) => {
+        item.children.forEach((child, childIndex) => {
+            // 如果点了左侧导航某项，或者刚加载时与当前url匹配的都需要设置导航
+            if (child.active || currentPath == child.link) {
+                activeChildItem = child;
+                isFoundActiveChild = true;
+                return false;
+            }
+        });
+        return !isFoundActiveChild;
+    });
+    return {
+        activeInfo: activeChildItem
+    };
 }
 export default connect(mapStateToProps)(App);

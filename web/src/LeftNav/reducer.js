@@ -16,28 +16,28 @@ const navConfigData = [
     {
         parent: {
             name: "商品管理",
-            link: "/good"
+            link: "/goods"
         },
         children: [
             {
                 name: "商品列表",
-                link: "/good"
+                link: "/goods"
             },
             {
                 name: "商品分类",
-                link: "/good-category"
+                link: "/goods-category"
             },
             {
                 name: "商品属性",
-                link: "/good-prop"
+                link: "/goods-prop"
             },
             {
                 name: "商品规格",
-                link: "/good-specification"
+                link: "/goods-specification"
             },
             {
                 name: "商品评价",
-                link: "/good-comment"
+                link: "/goods-comment"
             }
         ]
     },
@@ -49,7 +49,7 @@ const navConfigData = [
         children: [
             {
                 name: "会员列表",
-                link: "/good"
+                link: "/goods"
             }
         ]
     }

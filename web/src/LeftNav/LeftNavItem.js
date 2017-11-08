@@ -20,7 +20,9 @@ class LeftNavItem extends Component{
                 <Motion defaultStyle={{height: startH}} style={{height: spring(dstH)}}>
                     {
                         value => <dl className="content-wrap" style={value}>
-                            <dt onClick={() => this.props.onNavParentClick(item.parent.id)}><Link to={item.parent.link} className="first-level">{item.parent.name}</Link></dt>
+                            <dt onClick={() => this.props.onNavParentClick(item.parent.id)}>
+                                <a href="javascript:;" className="first-level">{item.parent.name}</a>
+                            </dt>
                             {
                                 item.children.map((childItem, childKey) => (
                                     <dd 
