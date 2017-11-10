@@ -32,12 +32,12 @@ const goodsCatetoryData = [
         parent_id: 1
     },
     {
-        name: "一级分类1",
+        name: "一级分类2",
         id: 3,
         parent_id: 1
     },
     {
-        name: "一级分类1",
+        name: "二级分类1",
         id: 4,
         parent_id: 3
     },
@@ -65,6 +65,13 @@ function addExtendField(data) {
 export default (state = goodsCatetoryData, action) => {
     switch(action.type) {
         case OPEN_CATEGORY:
+            return state.map((item) => {
+                return {
+                    ...item,
+                    open: action.id == item.id ? !item.open : item.open
+                };
+            });
+        case CLOSE_CATEGORY:
             return state.map((item) => {
                 return {
                     ...item,

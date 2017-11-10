@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {openCatetory, closeCatetory} from "./actions";
+import {openCategory, closeCategory} from "./actions";
 
 import "./GoodsCategory.scss";
 
@@ -13,29 +13,40 @@ class GoodsCategory extends Component{
 
     changeLinearToTree(ld) {
         let td = [];
-        // 提取顶级分类
+        // 存储各节点的子节点
+        let childrenOf = {};
+
         ld.forEach((item) => {
-            if (!item.parent_id) {
+            let id = item.id;
+            let parent_id = item.parent_id;
+
+            childrenOf[id] = childrenOf[id] || [];
+            item.children = childrenOf[id];
+
+            if (parent_id) {
+                childrenOf[parent_id] = childrenOf[parent_id] || [];
+                childrenOf[parent_id].push(item);
+            } else {
                 td.push(item);
-            }
-        });
-        ld.forEach((item) => {
-            if (item.parent_id) {
-                
             }
         });
         return td;
     }
     render() {
-        let treeData = this.changeLinearToTree(this.props.goodsCatetoryData);
+        // 传入数据的方式，默认是线性结构，线性结构将会调用changeLinearToTree转为树形结构
+        let dataform = this.props.dataform;
+        let goodsCatetoryData = this.props.goodsCatetoryData;
+        let treeData = dataform == "tree" ? goodsCatetoryData : this.changeLinearToTree(goodsCatetoryData);
+
+        console.log(treeData);
         return <div className="goods-category">
             {
-                treeData.map(function(v, i) {
+                treeData.map((v, i) => {
                     return <div className="item-wrap" key={v.id}>
                         <div className="parent clear">
                             {
-                                v.children ? 
-                                    <a className="btn open-identification fl" onClick={() => {
+                                v.children.length ? 
+                                    <a href="javascript:;" className="btn open-identification fl" onClick={() => {
                                         this.props[v.open ? "onCloseCategory" : "onOpenCategory"](v.id);
                                     }}>
                                         {v.open ? "-" : "+"}
@@ -44,9 +55,9 @@ class GoodsCategory extends Component{
                             }
                             <a className="item fl" href="javascript:;">{v.name}</a>
                         </div>
-                        <div className="children">
+                        <div className={v.open ? "children open" : "children"}>
                             {
-                                v.children ? <GoodsCategory goodsCatetoryData={v.children} /> : ""
+                                v.children.length ? <GoodsCategory goodsCatetoryData={v.children} dataform="tree" /> : ""
                             }
                         </div>
                     </div>
@@ -63,11 +74,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onOpenCategory: (id) => {
-            dispatch(openCatetory(id));
+            dispatch(openCategory(id));
         },
         onCloseCategory: (id) => {
-            dispatch(closeCatetory(id));
+            dispatch(closeCategory(id));
         }
     };
 };
-export default connect(mapStateToProps)(GoodsCategory);
+export default connect(mapStateToProps, mapDispatchToProps)(GoodsCategory);
