@@ -57,7 +57,7 @@ class GoodsCategory extends Component{
                         </div>
                         <div className={v.open ? "children open" : "children"}>
                             {
-                                v.children.length ? <GoodsCategory goodsCatetoryData={v.children} dataform="tree" /> : ""
+                                v.children.length ? <GoodsCategory goodsCatetoryData={v.children} dataform="tree" onOpenCategory={this.props.onOpenCategory} onCloseCategory={this.props.onCloseCategory} /> : ""
                             }
                         </div>
                     </div>
