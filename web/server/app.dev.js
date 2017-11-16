@@ -1,10 +1,8 @@
 const express = require("express");
 const path = require("path");
-
-const renderPage = require("./routes.Server.js").renderPage;
-
 const webpack = require("webpack");
 const webpackConfig = require("../config/webpack.config.dev.js");
+const renderPage = require("./Routes.server.js").renderPage;
 const compiler = webpack(webpackConfig);
 // 在Express服务器启动的时候，webpack-dev-middleware 根据 webpack 来编译生成打包文件，之后每次相关文件修改的时候，就会对应更新打包文件。 因为更新过程只需要重新编译更新的文件，这个速度会比启动时的完全编译过程快很多
 const webpackDevMiddleware = require("webpack-dev-middleware")(compiler, {
