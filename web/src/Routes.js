@@ -6,9 +6,9 @@ import {combineReducers} from "redux";
 import {syncHistoryWithStore} from "react-router-redux";
 
 import App from "./App/App.js";
-import {configureStore} from "./Store.js";
+import store from "./Store.js";
 
-const store = configureStore();
+
 const win = global.window;
 
 // import Order from "./Order/Order.js";

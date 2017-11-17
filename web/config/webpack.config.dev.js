@@ -8,9 +8,11 @@ module.exports = {
     entry: __dirname + "../src/main.js",
     output: {
         path: __dirname + "../dist",
-        // filename配置并不产生物理文件，在使用WebpackDevServer插件热更新时需要用到
-        filename: "static/js/bundle.js",
-        chunkFilename: "static/js/[name].chunk.js",
+        // filename
+        // 作用一：在使用WebpackDevServer插件热更新时需要用到
+        // 作用二：打包所有页面入口都用到的js
+        filename: "js/bundle.js",
+        chunkFilename: "js/[name].chunk.js",
         publicPath: "/"
     },
     module: {
@@ -54,7 +56,7 @@ module.exports = {
         }),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'common', 
-            filename: 'static/js/common.js'
+            filename: 'js/common.js'
         }),
         new ManifestPlugin({
             fileName: 'asset-manifest.json'
