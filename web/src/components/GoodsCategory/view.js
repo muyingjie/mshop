@@ -66,10 +66,10 @@ class GoodsCategory extends Component{
         </div>;
     }
 }
-export const goodsCatetoryDataKey = "goodsCategory";
+export const stateKey = "goodsCategory";
 const mapStateToProps = (state) => {
     return {
-        goodsCatetoryData: state[goodsCatetoryDataKey]
+        goodsCatetoryData: state[stateKey]
     };
 };
 const mapDispatchToProps = (dispatch) => {

@@ -5,7 +5,7 @@ import {Provider} from "react-redux";
 import {combineReducers} from "redux";
 import {syncHistoryWithStore} from "react-router-redux";
 
-import App from "./App/App.js";
+import App from "./pages/App.js";
 import store from "./Store.js";
 
 
@@ -39,7 +39,18 @@ const getGoodsPage = (nextState, callback) => {
 
 const getGoodsCategoryPage = (nextState, callback) => {
     require.ensure([], function(require) {
-        callback(null, require('./GoodsCategory/GoodsCategory.js').default);
+        const {page, reducer, stateKey, initialState} = require('./pages/GoodsCategory.js');
+        const state = store.getState();
+
+        store.reset(combineReducers({
+            ...store._reducers,
+            goodsCategory: reducer
+        }), {
+            ...state,
+            [stateKey]: initialState
+        });
+
+        callback(null, page);
     }, 'goodsCategory');
 };
 
@@ -51,7 +62,7 @@ const getMemberPage = (nextState, callback) => {
 
 const getHomePage = (nextState, callback) => {
     require.ensure([], function(require) {
-        callback(null, require('./Home/Home.js').default);
+        callback(null, require('./pages/Home.js').default);
     }, 'home');
 };
 

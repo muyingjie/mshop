@@ -26,8 +26,7 @@ module.exports = {
                             "es2015", "react"
                         ]
                     }
-                },
-                loader: "react-hot"
+                }
             },
             {
                 test: /\.css$/,
