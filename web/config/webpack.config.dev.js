@@ -3,6 +3,8 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var ManifestPlugin = require("webpack-manifest-plugin");
 var webpack = require("webpack");
+var path = require('path');
+var fs = require('fs');
 module.exports = {
     devtool: 'eval-source-map',
     entry: __dirname + "../src/main.js",
@@ -17,6 +19,11 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                include: path.resolve(fs.realpathSync(process.cwd()), "src"),
+                loader: 'react-hot'
+            },
             {
                 test: /(\.jsx|\.js)$/,
                 use: {
@@ -57,6 +64,7 @@ module.exports = {
             name: 'common', 
             filename: 'js/common.js'
         }),
+        new webpack.HotModuleReplacementPlugin(),
         new ManifestPlugin({
             fileName: 'asset-manifest.json'
         })

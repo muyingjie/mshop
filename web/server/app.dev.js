@@ -16,7 +16,7 @@ const webpackDevMiddleware = require("webpack-dev-middleware")(compiler, {
 
 // webpack-dev-middleware并没有将产生的打包文件存放在真实的文件系统中，而是存放在内存中的虚拟文件系统，所以要获取资源描述文件不能像产品环境那样直接require 就行，而是要读取 webpack-dev-middleware 实例中的虚拟文件系统
 function getAssetManifest() {
-    const content = webpackDevMiddleware.fileSystem.readFileSync(__dirname + "/../build/asset-manifest.json");
+    const content = webpackDevMiddleware.fileSystem.readFileSync(__dirname + "/../dist/asset-manifest.json");
     return JSON.parse(content);
 }
 
@@ -24,7 +24,7 @@ const app = express();
 
 let assetManifest = null;
 
-app.use(express.static(path.resolve(__dirname, "../build")));
+app.use(express.static(path.resolve(__dirname, "../dist")));
 
 app.use(webpackDevMiddleware);
 // 虽然 webpack-dev-middleware 中间件能够完成实时更新打包文件，但是这只发生在服务器端，只有当浏览器刷新重新向服务器请求资源时才能得到更新的打包文件，而webpack-hot-middleware就更进一步，无需 网页刷新，能够把代码更新“推送” 到网页之中。

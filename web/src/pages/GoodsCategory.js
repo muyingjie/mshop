@@ -7,4 +7,13 @@ const page = () => {
     );
 };
 
-export {page, reducer, initialState, stateKey};
+const initState = () => {
+    return fetch("/api/goods-category").then(response => {
+        if (response.status != "200") {
+            throw new Error("Fail to fetch count");
+        }
+        return response.json();
+    });
+};
+
+export {page, reducer, initState, stateKey};

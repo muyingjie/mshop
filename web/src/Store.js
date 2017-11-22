@@ -12,7 +12,8 @@ const originalReducers = {
 };
 const reducer = combineReducers(originalReducers);
 
-const win = window;
+// const win = window;
+const win = global.window;
 
 const middlewares = [thunkMiddleware];
 
