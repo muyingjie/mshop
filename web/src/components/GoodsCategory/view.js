@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import {openCategory, closeCategory} from "./actions";
 
-import "./GoodsCategory.scss";
+import "./view.scss";
 
 class GoodsCategory extends Component{
     constructor(props) {

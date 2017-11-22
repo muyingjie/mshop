@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import "./Home.scss";
+import "./view.scss";
 
 const Home = () => {
     return (

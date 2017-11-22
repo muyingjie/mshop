@@ -46,7 +46,7 @@ app.get("*", (req, res) => {
 app.set("view engine", "ejs");
 app.set("views", path.resolve(__dirname, "views"));
 
-app.listen(PORT, function() {
+app.listen(9000, function() {
     console.log("产品模式服务器已开启");
 });
 

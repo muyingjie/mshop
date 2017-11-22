@@ -3,7 +3,7 @@ import LeftNav from "../LeftNav/LeftNav.js";
 import {Link, browserHistory} from "react-router";
 import {connect} from "react-redux";
 
-import "./App.scss";
+import "./view.scss";
 
 class App extends Component {
     constructor(props) {
