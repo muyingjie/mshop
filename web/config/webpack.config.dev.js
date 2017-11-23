@@ -3,13 +3,12 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var ManifestPlugin = require("webpack-manifest-plugin");
 var webpack = require("webpack");
-var path = require('path');
-var fs = require('fs');
+var paths = require("./paths");
 module.exports = {
     devtool: 'eval-source-map',
-    entry: __dirname + "../src/main.js",
+    entry: paths.appMain,
     output: {
-        path: __dirname + "../dist",
+        path: paths.appDist,
         // filename
         // 作用一：在使用WebpackDevServer插件热更新时需要用到
         // 作用二：打包所有页面入口都用到的js
@@ -21,7 +20,7 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
-                include: path.resolve(fs.realpathSync(process.cwd()), "src"),
+                include: paths.appSrc,
                 loader: 'react-hot'
             },
             {
