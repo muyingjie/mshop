@@ -1,0 +1,25 @@
+*{ margin: 0; padding: 0; list-style: none; text-decoration: none; color: #333; font-family: 宋体;}
+
+a{ text-decoration: none;}
+.fl{ float: left;}
+.fr{ float: right;}
+.inline-block{ display: inline-block;}
+.bd{ box-sizing: border-box;}
+.clear:after{ clear: both; display: block; content: "";}
+.ellipsis{ display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;}
+
+.wrap{ margin: 0 20px;}
+.wrap .top-bar{ height: 70px; border-bottom: 1px solid #eee;}
+.wrap .top-bar .logo{ display: block; width: 10%; height: 100%; background: #eef; color: #fff; line-height: 70px; text-align: center; font-weight: bold; font-size: 30px;}
+.wrap .nav-wrap{ width: 10%;}
+.wrap .main{ padding: 10px; width: 90%;}
+.wrap .main .title-back{ line-height: 50px;}
+.wrap .main .back{ width: 80px; text-align: center;}
+.wrap .main .title{ font-family: 黑体;}
+.wrap .main .content{ margin-left: 80px; margin-top: 20px;}
+
+.nav{ padding-top: 10px; background: #eee;}
+.nav .content-wrap{ line-height: 30px; font-size: 14px; overflow: hidden;}
+.nav .first-level{ padding-left: 10px;}
+.nav .child-item{ padding-left: 20px; color: #666;}
+.nav .child-item.active{ background: #ddd;}

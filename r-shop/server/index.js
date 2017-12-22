@@ -1,6 +1,9 @@
 process.env.NODE_ENV = 'development';
 
 require('babel-register');
+require.extensions['.css'] = function() {
+  return;
+};
 require('isomorphic-fetch');
 
 const isProductionMode = (process.env.NODE_ENV === 'production');

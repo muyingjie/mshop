@@ -1,17 +1,5 @@
-import React from 'react';
+import * as actions from './actions.js';
+import reducer from './reducer';
+import view from './view';
 
-import {Link} from 'react-router';
-
-const view = () => {
-  return (
-    <div>
-      <ul>
-        <li><Link to="/home">Home</Link></li>
-        <li><Link to="/counter">Counter</Link></li>
-        <li><Link to="/about">About</Link></li>
-      </ul>
-    </div>
-  );
-};
-
-export {view};
+export {actions, view, reducer};

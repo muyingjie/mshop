@@ -2,12 +2,14 @@
 //const reducer = f => f;
 import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import {routerReducer} from 'react-router-redux';
+import {reducer as leftNavReducer} from './components/LeftNav';
 
 import resetEnhancer from './enhancer/reset.js';
 
 const configureStore = () => {
   const originalReducers = {
-    routing: routerReducer
+    routing: routerReducer,
+    leftNav: leftNavReducer
   }
   const reducer = combineReducers(originalReducers);
 

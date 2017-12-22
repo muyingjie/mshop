@@ -1,0 +1,7 @@
+.goods-category {}
+.goods-category .item-wrap{ width: 100%; line-height: 20px; font-size: 14px; text-align: center; margin-bottom: 8px;}
+.goods-category .parent{ margin-bottom: 8px;}
+.goods-category .children{ margin-left: 30px; display: none;}
+.goods-category .children.open{ display: block;}
+.goods-category .item-wrap .open-identification{ display: block; width: 20px; height: 20px; margin-right: 4px;}
+.goods-category .item-wrap .open-identification.btn{ background: #eee;}

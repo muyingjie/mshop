@@ -3,6 +3,8 @@ import React from 'react';
 import {Link} from 'react-router';
 import {view as LeftNav} from '../components/LeftNav';
 
+import "../common/common.css";
+
 const App = ({children}) => {
   return (
     <div className="wrap">

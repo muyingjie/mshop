@@ -58,6 +58,23 @@ const getCounterPage = (nextState, callback) => {
   }, 'counter');
 };
 
+const getGoodsCategoryPage = (nextState, callback) => {
+  require.ensure([], function(require) {
+    const {page, reducer, stateKey, initState} = require('./pages/GoodsCategory.js');
+    const state = store.getState();
+
+    store.reset(combineReducers({
+      ...store._reducers,
+      [stateKey]: reducer
+    }, {
+      ...state,
+      [stateKey]: initState
+    }));
+
+    callback(null, page);
+  }, 'goodsCategory');
+};
+
 const getNotFoundPage = (nextState, callback) => {
   require.ensure([], function(require) {
     callback(null, require('./pages/NotFound.js').default);
@@ -71,6 +88,7 @@ const routes = (
   <Route path="/" component={App}>
     <IndexRoute getComponent={getHomePage} />
     <Route path="home" getComponent={getHomePage} />
+    <Route path="goods-category" getComponent={getGoodsCategoryPage} />
     <Route path="counter" getComponent={getCounterPage} />
     <Route path="about" getComponent={getAboutPage} />
     <Route path="*" getComponent={getNotFoundPage} />
