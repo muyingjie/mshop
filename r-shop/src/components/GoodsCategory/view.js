@@ -38,7 +38,6 @@ class GoodsCategory extends Component{
         let goodsCatetoryData = this.props.goodsCatetoryData;
         let treeData = dataform == "tree" ? goodsCatetoryData : this.changeLinearToTree(goodsCatetoryData);
 
-        console.log(treeData);
         return <div className="goods-category">
             {
                 treeData.map((v, i) => {

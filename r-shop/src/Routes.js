@@ -66,10 +66,10 @@ const getGoodsCategoryPage = (nextState, callback) => {
     store.reset(combineReducers({
       ...store._reducers,
       [stateKey]: reducer
-    }, {
+    }), {
       ...state,
       [stateKey]: initState
-    }));
+    });
 
     callback(null, page);
   }, 'goodsCategory');

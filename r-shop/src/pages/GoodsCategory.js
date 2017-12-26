@@ -43,5 +43,5 @@ function addExtendField(data) {
             addExtendField(item.children);
         }
     });
-};
+}
 export {page, reducer, initState, stateKey};
