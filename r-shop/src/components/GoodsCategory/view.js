@@ -35,7 +35,7 @@ class GoodsCategory extends Component{
     render() {
         // 传入数据的方式，默认是线性结构，线性结构将会调用changeLinearToTree转为树形结构
         let dataform = this.props.dataform;
-        let goodsCatetoryData = this.props.goodsCatetoryData;
+        let goodsCatetoryData = JSON.parse(JSON.stringify(this.props.goodsCatetoryData));
         let treeData = dataform == "tree" ? goodsCatetoryData : this.changeLinearToTree(goodsCatetoryData);
 
         return <div className="goods-category">
