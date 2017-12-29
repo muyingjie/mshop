@@ -61,17 +61,24 @@ const getCounterPage = (nextState, callback) => {
 const getGoodsCategoryPage = (nextState, callback) => {
   require.ensure([], function(require) {
     const {page, reducer, stateKey, initState} = require('./pages/GoodsCategory.js');
+    const dehydratedState = (win && win.DEHYDRATED_STATE);
     const state = store.getState();
+    const mergedState = {...dehydratedState, ...state};
+    const statePromise = mergedState[stateKey]
+      ? Promise.resolve(mergedState[stateKey])
+      : initState();
 
-    store.reset(combineReducers({
-      ...store._reducers,
-      [stateKey]: reducer
-    }), {
-      ...state,
-      [stateKey]: initState
+    statePromise.then((result) => {
+      store.reset(combineReducers({
+        ...store._reducers,
+        [stateKey]: reducer
+      }), {
+        ...state,
+        [stateKey]: result
+      });
+
+      callback(null, page);
     });
-
-    callback(null, page);
   }, 'goodsCategory');
 };
 

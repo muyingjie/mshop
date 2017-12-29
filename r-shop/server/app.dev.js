@@ -35,6 +35,40 @@ app.use('/api/count', (req, res) => {
   res.json({count: 100});
 });
 
+
+app.use('/api/GoodsCategory', (req, res) => {
+  const initState = [
+      {
+          name: "顶级分类1",
+          id: 1
+      },
+      {
+          name: "一级分类1",
+          id: 2,
+          parent_id: 1
+      },
+      {
+          name: "一级分类2",
+          id: 3,
+          parent_id: 1
+      },
+      {
+          name: "二级分类1",
+          id: 4,
+          parent_id: 3
+      },
+      {
+          name: "顶级分类1",
+          id: 5
+      },
+      {
+          name: "顶级分类1",
+          id: 6
+      }
+  ];
+  res.json(initState);
+});
+
 app.get('*', (req, res) => {
   if (!assetManifest) {
     assetManifest = getAssetManifest();

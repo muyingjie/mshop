@@ -6,36 +6,22 @@ const page = () => {
     <GoodsCategory />
   );
 };
-const initState = [
-    {
-        name: "顶级分类1",
-        id: 1
-    },
-    {
-        name: "一级分类1",
-        id: 2,
-        parent_id: 1
-    },
-    {
-        name: "一级分类2",
-        id: 3,
-        parent_id: 1
-    },
-    {
-        name: "二级分类1",
-        id: 4,
-        parent_id: 3
-    },
-    {
-        name: "顶级分类1",
-        id: 5
-    },
-    {
-        name: "顶级分类1",
-        id: 6
+
+const END_POINT = process.env.HOST_NAME || 'localhost:9000';
+
+const initState = () => {
+  return fetch(`http://${END_POINT}/api/GoodsCategory`).then(response => {
+    if (response.status !== 200) {
+      throw new Error('Fail to fetch count');
     }
-];
-addExtendField(initState);
+    return response.json();
+  }).then(responseJson => {
+    console.log('GoodsCategory', responseJson);
+    addExtendField(responseJson);
+    return responseJson;
+  });
+}
+
 function addExtendField(data) {
     data.forEach(function(item, index) {
         item.open = false;

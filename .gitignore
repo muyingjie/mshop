@@ -2,6 +2,7 @@
 */dist/*
 */npm-debug.log
 */npm-debug.log.*
+r-shop/build/*
 r-shop-web/*
 npm-debug.log.*
 .idea

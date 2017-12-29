@@ -1,4 +1,5 @@
 process.env.NODE_ENV = 'development';
+// process.env.NODE_ENV = 'production';
 
 require('babel-register');
 require.extensions['.css'] = function() {
