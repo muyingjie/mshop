@@ -6,3 +6,5 @@ r-shop/build/*
 r-shop-web/*
 npm-debug.log.*
 .idea
+r-shop-server/php7/*
+r-shop-server/workerman/*
