@@ -10,7 +10,7 @@ const page = () => {
 const END_POINT = process.env.HOST_NAME || 'localhost:9000';
 
 const initState = () => {
-  return fetch(`http://${END_POINT}/api/GoodsCategory`).then(response => {
+  return fetch(`/service/goods/goodsCategory/get_goods_category`).then(response => {
     if (response.status !== 200) {
       throw new Error('Fail to fetch count');
     }

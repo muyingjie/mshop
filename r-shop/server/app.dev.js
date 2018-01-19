@@ -1,5 +1,8 @@
 const express = require('express');
 const path = require('path');
+const request = require('request');
+
+const host = "localhost";
 
 const renderPage = require('./routes.Server.js').renderPage;
 
@@ -31,43 +34,41 @@ app.use(require('webpack-hot-middleware')(compiler, {
   heartbeat: 10 * 1000
 }));
 
-app.use('/api/count', (req, res) => {
-  res.json({count: 100});
+app.use('/', (req, res) => {
+  var aPathSections = req.path.substring(1).split('/');
+  var reqType = aPathSections[0];
+  var model = aPathSections[1];
+  var controller = aPathSections[2];
+  var action = aPathSections[3];
+
+  if (req.path == '/favicon.ico') {
+    res.end();
+    return;
+  }
+
+  switch(reqType) {
+    case 'service':
+      // 建立http客户端发起请求
+      createRequestClient(aPathSections, model, controller, action).then(function(data) {
+        res.send(data);
+      });
+      break;
+    case 'page':
+    case 'css':
+    case 'js':
+    case 'img':
+    case 'views':
+      console.log('static resource route', req.path);
+      break;
+    default:
+      console.log('default', req.path);
+      res.status(404).end();
+  }
 });
 
-
-app.use('/api/GoodsCategory', (req, res) => {
-  const initState = [
-      {
-          name: "顶级分类1",
-          id: 1
-      },
-      {
-          name: "一级分类1",
-          id: 2,
-          parent_id: 1
-      },
-      {
-          name: "一级分类2",
-          id: 3,
-          parent_id: 1
-      },
-      {
-          name: "二级分类1",
-          id: 4,
-          parent_id: 3
-      },
-      {
-          name: "顶级分类1",
-          id: 5
-      },
-      {
-          name: "顶级分类1",
-          id: 6
-      }
-  ];
-  res.json(initState);
-});
+function createRequestClient(aPath, model, controller, action) {
+  
+}
 
 app.get('*', (req, res) => {
   if (!assetManifest) {
